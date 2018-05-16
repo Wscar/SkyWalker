@@ -10,6 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using User.API.DBContext;
+using IdentityServer4;
+using Microsoft.AspNetCore.Http;
+using User.API.IdentityServerValidator;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 namespace User.API
 {
     public class Startup
@@ -30,6 +36,22 @@ namespace User.API
                 {
                     options.UseMySQL(Configuration.GetConnectionString("MySqlConnectionString"));
                 });
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResource())
+                .AddInMemoryIdentityResources(Config.GetIdentityResource())
+                .AddInMemoryClients(Config.GetClients())
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                .AddProfileService<ProfileService>();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "user_api";
+                    options.Authority = "http://localhost:56454";
+                    options.SaveToken = true;
+                });
             services.AddMvc();
         }
 
@@ -40,8 +62,10 @@ namespace User.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseMvc();
+          
         }
     }
 }
