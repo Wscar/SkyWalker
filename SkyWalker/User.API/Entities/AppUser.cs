@@ -33,5 +33,9 @@ namespace User.API.Entities
         /// 0男，1女
         /// </summary>
         public int Sex { get; set; }
+        /// <summary>
+        /// 电话号码
+        /// </summary>
+        public string Phone { get; set; }
     }
 }

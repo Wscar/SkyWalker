@@ -17,6 +17,7 @@ namespace User.API.Entities
             builder.Property(x => x.UserName).HasColumnType("varchar(50)");
             builder.Property(x => x.UserPassWord).HasColumnType("varchar(50)");
             builder.Property(x => x.Avatar).HasColumnType("varchar(200)");
+            builder.Property(x => x.Phone).HasColumnType("varchar(20)");
         }
     }
 }

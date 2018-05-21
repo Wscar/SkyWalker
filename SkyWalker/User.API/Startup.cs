@@ -32,7 +32,7 @@ namespace User.API
         {
             //添加数据配置
             services.AddDbContext<UserDbContext>(
-                options => 
+                options =>
                 {
                     options.UseMySQL(Configuration.GetConnectionString("MySqlConnectionString"));
                 });
@@ -60,12 +60,19 @@ namespace User.API
         {
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseIdentityServer();
-            app.UseMvc();
-          
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                   name: "default",
+                   template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
         }
     }
 }

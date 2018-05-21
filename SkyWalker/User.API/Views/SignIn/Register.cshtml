@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+@using User.API.ViewModel;
+@model RegisterViewModel;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link  href="~/css/Main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login">
+        <div class="login-header"></div>
+        <div class="nav-login">
+            <div class="login-body">
+                <div class="login-account">
+                    <div class="login-title">
+                        <h2>注册新用户</h2>
+                    </div>
+                    <div class="login-form">
+                        <form>
+                            <div class="login-username">
+                                <input asp-for="UserId" type="text" name="username" placeholder="用户名" />
+                            </div>
+                            <div class="login-pwd">
+                                <input asp-for="Password" type="password" name="pwd" placeholder="密码">
+                            </div>
+                            <div class="register-confirm-pwd">
+                                <input asp-for="ConfirmPassword" type="password" name="pwd" placeholder="确认密码">
+                            </div>
+                            <div class="login-submit">
+                                <input type="submit" value="注册">
+                            </div>
+                        </form>
+                    </div>
+                    <h2 class="register-message">
+                        欢迎来到skyWalker
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

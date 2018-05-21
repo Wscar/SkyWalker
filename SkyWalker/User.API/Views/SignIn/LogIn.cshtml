@@ -1,0 +1,46 @@
+﻿
+@using User.API.ViewModel;
+@model SignInViewModel;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]="登陆"</title>
+    <link href="~/css/Main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login">
+        <div class="login-header"></div>
+        <div class="nav-login">
+            <div class="login-body">
+                <div class="login-account">
+                    <div class="login-title">
+                        <h2>SkyWalker</h2>
+                    </div>
+                    <div class="login-form">
+                        <form  asp- method="post">
+                            <div class="login-username">
+                                <input asp-for="UserName"  type="text" name="username" placeholder="用户名" />
+                            </div>
+                            <div class="login-pwd">
+                                <input  asp-for="PassWord"  type="password" name="pwd" placeholder="密码">
+                            </div>
+                            <div class="login-submit">
+                                <input  type="submit" value="登陆">
+                            </div>
+                        </form>
+                    </div>
+                    <h2 class="message">
+                        <span>没有账户?</span>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <a href="#">创建一个账号</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

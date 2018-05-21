@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/Main.css" />
+</head>
+<body>
+    <div class="head">
+        <div class="head_left"></div>
+        <div class="head-right">
+            <ul class="account">
+                <li><a asp-controller="SignIn" asp-action="LogIn">登陆</a></li>
+                <li><span>|</span></li>
+                <li><a asp-controller="SignIn" asp-action="Register">注册</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container_body">
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
