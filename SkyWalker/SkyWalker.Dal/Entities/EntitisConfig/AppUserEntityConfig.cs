@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace User.API.Entities
+namespace SkyWalker.Dal.Entities 
 {
     public class AppUserEntityConfig : IEntityTypeConfiguration<AppUser>
     {

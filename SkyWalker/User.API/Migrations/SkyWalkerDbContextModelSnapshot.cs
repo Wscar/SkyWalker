@@ -4,22 +4,21 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.Data.EntityFrameworkCore.Storage.Internal;
+using SkyWalker.Dal.DBContext;
 using System;
-using User.API.DBContext;
 
 namespace User.API.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
-    [Migration("20180517130152_AppUserAddPhone")]
-    partial class AppUserAddPhone
+    [DbContext(typeof(SkyWalkerDbContext))]
+    partial class SkyWalkerDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026");
 
-            modelBuilder.Entity("User.API.Entities.AppUser", b =>
+            modelBuilder.Entity("SkyWalker.Dal.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id");
 

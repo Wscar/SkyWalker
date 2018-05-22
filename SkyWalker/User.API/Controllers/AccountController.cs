@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using User.API.ViewModel;
-using User.API.DBContext;
-using User.API.Entities;
+using SkyWalker.Dal.DBContext;
+using SkyWalker.Dal.Entities;
+
 namespace User.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        public readonly UserDbContext UserDbContext;
-        public AccountController(UserDbContext _userDbContext)
+        public readonly SkyWalkerDbContext UserDbContext;
+        public AccountController(SkyWalkerDbContext _userDbContext)
         {
             this.UserDbContext = _userDbContext;
         }

@@ -9,12 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using User.API.DBContext;
+using SkyWalker.Dal.DBContext;
 using IdentityServer4;
 using Microsoft.AspNetCore.Http;
 using User.API.IdentityServerValidator;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Reflection;
 
 namespace User.API
 {
@@ -30,11 +31,14 @@ namespace User.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             //添加数据配置
-            services.AddDbContext<UserDbContext>(
+            services.AddDbContext<SkyWalkerDbContext>(
                 options =>
                 {
-                    options.UseMySQL(Configuration.GetConnectionString("MySqlConnectionString"));
+                    options.UseMySQL(Configuration.GetConnectionString("MySqlConnectionString"),
+                        sql => { sql.MigrationsAssembly(migrationAssembly); }
+                        );
                 });
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()

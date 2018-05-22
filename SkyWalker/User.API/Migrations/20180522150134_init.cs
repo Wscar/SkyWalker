@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace User.API.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +15,7 @@ namespace User.API.Migrations
                     Id = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(type: "varchar(50)", nullable: false),
                     Avatar = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Phone = table.Column<string>(type: "varchar(20)", nullable: true),
                     Sex = table.Column<int>(nullable: false),
                     UserName = table.Column<string>(type: "varchar(50)", nullable: true),
                     UserPassWord = table.Column<string>(type: "varchar(50)", nullable: true)

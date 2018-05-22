@@ -1,0 +1,11 @@
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.0\SkyWalker.WEB.deps.json
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.0\SkyWalker.WEB.runtimeconfig.json
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.0\SkyWalker.WEB.runtimeconfig.dev.json
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.0\SkyWalker.WEB.dll
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.0\SkyWalker.WEB.pdb
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.csprojResolveAssemblyReference.cache
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.csproj.CoreCompileInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.AssemblyInfoInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.AssemblyInfo.cs
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.dll
+F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.0\SkyWalker.WEB.pdb

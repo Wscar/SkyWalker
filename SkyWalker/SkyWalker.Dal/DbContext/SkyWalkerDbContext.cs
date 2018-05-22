@@ -4,12 +4,12 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using User.API.Entities;
-namespace User.API.DBContext
+using SkyWalker.Dal.Entities;
+namespace SkyWalker.Dal.DBContext
 {
-    public class UserDbContext:DbContext
+    public class SkyWalkerDbContext:DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options):base(options)
+        public SkyWalkerDbContext(DbContextOptions<SkyWalkerDbContext> options):base(options)
         {
             
         }
