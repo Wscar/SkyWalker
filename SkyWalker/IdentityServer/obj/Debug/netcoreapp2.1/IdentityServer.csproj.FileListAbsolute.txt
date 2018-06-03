@@ -1,0 +1,14 @@
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.deps.json
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.runtimeconfig.json
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.runtimeconfig.dev.json
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.dll
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.pdb
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.csproj.CoreCompileInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorAssemblyInfo.cache
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorAssemblyInfo.cs
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.AssemblyInfoInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.AssemblyInfo.cs
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorTargetAssemblyInfo.cache
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.dll
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.pdb
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.csprojAssemblyReference.cache

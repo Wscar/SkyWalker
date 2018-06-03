@@ -39,7 +39,9 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
                     ClientSecrets = { new Secret("yemobai".Sha256()) },
-                   // AlwaysIncludeUserClaimsInIdToken = true,                 
+                     RefreshTokenUsage=TokenUsage.ReUse,
+                   
+                     AlwaysIncludeUserClaimsInIdToken = true,                 
                     //AllowOfflineAccess = true,
                     AllowedScopes=new List<string>
                     {

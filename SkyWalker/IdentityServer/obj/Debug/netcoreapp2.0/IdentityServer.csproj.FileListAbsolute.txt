@@ -2,10 +2,10 @@ F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\Identity
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\IdentityServer.runtimeconfig.json
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\IdentityServer.runtimeconfig.dev.json
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\IdentityServer.dll
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\IdentityServer.pdb
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.csprojResolveAssemblyReference.cache
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.csproj.CoreCompileInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.AssemblyInfoInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.AssemblyInfo.cs
-F:\MyProject\SkyWalker\SkyWalker\IdentityServer\bin\Debug\netcoreapp2.0\IdentityServer.pdb
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.dll
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.0\IdentityServer.pdb

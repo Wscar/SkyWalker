@@ -1,9 +1,9 @@
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\bin\Debug\netcoreapp2.0\SkyWalker.Dal.deps.json
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\bin\Debug\netcoreapp2.0\SkyWalker.Dal.dll
+F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.csprojResolveAssemblyReference.cache
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.csproj.CoreCompileInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.AssemblyInfoInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.AssemblyInfo.cs
-F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.csprojResolveAssemblyReference.cache
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\bin\Debug\netcoreapp2.0\SkyWalker.Dal.pdb
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.dll
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.0\SkyWalker.Dal.pdb

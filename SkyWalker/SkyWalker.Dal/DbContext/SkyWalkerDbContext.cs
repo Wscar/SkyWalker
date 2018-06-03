@@ -14,9 +14,16 @@ namespace SkyWalker.Dal.DBContext
             
         }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Story> Stories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppUserEntityConfig());
+            //
+            //modelBuilder.ApplyConfiguration(new BookEntityConfig());
+            //modelBuilder.ApplyConfiguration(new CommentEntityConfig());
+            //modelBuilder.ApplyConfiguration(new StoryEntityConfig());
         }
     }
 }

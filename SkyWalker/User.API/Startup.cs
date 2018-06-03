@@ -36,7 +36,7 @@ namespace User.API
             services.AddDbContext<SkyWalkerDbContext>(
                 options =>
                 {
-                    options.UseMySQL(Configuration.GetConnectionString("MySqlConnectionString"),
+                    options.UseMySql(Configuration.GetConnectionString("MySqlConnectionString"),
                         sql => { sql.MigrationsAssembly(migrationAssembly); }
                         );
                 });
@@ -46,7 +46,8 @@ namespace User.API
                 .AddInMemoryIdentityResources(Config.GetIdentityResource())
                 .AddInMemoryClients(Config.GetClients())
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
-                .AddProfileService<ProfileService>();
+                .AddProfileService<ProfileService>()
+                ;
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

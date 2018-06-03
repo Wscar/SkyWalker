@@ -4,18 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using SkyWalker.Dal.DBContext;
 namespace User.API.Controllers
 {   
-    [Authorize]
+   
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public readonly SkyWalkerDbContext dbContext;
+        public ValuesController(SkyWalkerDbContext _dbContext)
+        {
+            dbContext = _dbContext;
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var book= dbContext.Books.SingleOrDefault(x => x.BookId == 1);
+            return new List<string>() { book.BookName };
         }
 
         // GET api/values/5

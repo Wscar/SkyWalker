@@ -25,6 +25,7 @@
         "dependencies": {
           "IdentityServer4": "2.2.0",
           "Microsoft.AspNetCore.All": "2.0.6",
+          "Microsoft.AspNetCore.JsonPatch": "2.0.0",
           "Microsoft.AspNetCore.Mvc.TagHelpers": "2.0.4",
           "Microsoft.EntityFrameworkCore": "2.0.3",
           "Microsoft.NETCore.App": "2.0.0",
