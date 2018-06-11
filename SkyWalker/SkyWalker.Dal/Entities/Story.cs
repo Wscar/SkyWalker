@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SkyWalker.Dal.Entities
 {
-  public  class Story
+  public  class Story : Entity
     {   /*
         每本书包含n个故事
          */
-        public int Id { get; set; }
+     
         /// <summary>
         /// 书籍ID
         /// </summary>

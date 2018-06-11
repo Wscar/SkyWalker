@@ -16,7 +16,8 @@ using User.API.IdentityServerValidator;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Reflection;
-
+using SkyWalker.Dal;
+using MySql.Data.MySqlClient;
 namespace User.API
 {
     public class Startup
@@ -58,6 +59,9 @@ namespace User.API
                     options.SaveToken = true;
                 });
             services.AddMvc();
+            
+            services.ConfigRepository();
+            services.AddScoped(c => new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkyWalker.Dal.DBContext;
 
@@ -15,8 +14,8 @@ namespace User.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
-                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799");
+                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("SkyWalker.Dal.Entities.AppUser", b =>
                 {
@@ -27,6 +26,12 @@ namespace User.API.Migrations
 
                     b.Property<string>("Avatar")
                         .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("Brithday")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Describe")
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("varchar(20)");

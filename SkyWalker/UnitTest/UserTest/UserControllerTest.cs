@@ -46,7 +46,7 @@ namespace UserTest
         }
         private UserController GetUserController()
         {
-            var controller = new UserController(dbContext);
+            var controller = new UserController(dbContext,null);
             return controller;
         }
         [Fact]

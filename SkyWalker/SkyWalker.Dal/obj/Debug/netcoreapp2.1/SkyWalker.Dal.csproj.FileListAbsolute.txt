@@ -6,4 +6,3 @@ F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.1\SkyWalker
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.1\SkyWalker.Dal.AssemblyInfo.cs
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.1\SkyWalker.Dal.dll
 F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.1\SkyWalker.Dal.pdb
-F:\MyProject\SkyWalker\SkyWalker\SkyWalker.Dal\obj\Debug\netcoreapp2.1\SkyWalker.Dal.csprojAssemblyReference.cache

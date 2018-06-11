@@ -4,12 +4,9 @@ using System.Text;
 
 namespace SkyWalker.Dal.Entities
 {
-   public class Comment
+   public class Comment : Entity
     {   
-        /// <summary>
-        /// 评论唯一ID
-        /// </summary>
-        public int Id { get; set; }
+      
         /// <summary>
         /// 发表评论的用户ID
         /// </summary>

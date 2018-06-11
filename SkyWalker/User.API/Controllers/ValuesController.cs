@@ -20,7 +20,7 @@ namespace User.API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var book= dbContext.Books.SingleOrDefault(x => x.BookId == 1);
+            var book= dbContext.Books.SingleOrDefault(x => x.Id == 1);
             return new List<string>() { book.BookName };
         }
 

@@ -20,10 +20,9 @@ namespace SkyWalker.Dal.DBContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppUserEntityConfig());
-            //
-            //modelBuilder.ApplyConfiguration(new BookEntityConfig());
-            //modelBuilder.ApplyConfiguration(new CommentEntityConfig());
-            //modelBuilder.ApplyConfiguration(new StoryEntityConfig());
+            modelBuilder.ApplyConfiguration(new BookEntityConfig());
+            modelBuilder.ApplyConfiguration(new CommentEntityConfig());
+            modelBuilder.ApplyConfiguration(new StoryEntityConfig());
         }
     }
 }

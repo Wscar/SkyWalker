@@ -18,6 +18,8 @@ namespace SkyWalker.Dal.Entities
             builder.Property(x => x.UserPassWord).HasColumnType("varchar(50)");
             builder.Property(x => x.Avatar).HasColumnType("varchar(200)");
             builder.Property(x => x.Phone).HasColumnType("varchar(20)");
+            builder.Property(x => x.Describe).HasColumnType("varchar(500)");
+            builder.Property(x => x.Brithday).HasColumnType("datetime");
         }
     }
 }

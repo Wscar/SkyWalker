@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SkyWalker.Dal.Entities
 {
-    public class AppUser
+    public class AppUser:Entity
     {
-        public int Id { get; set; }
+       
 
         /// <summary>
         /// 用户账号
@@ -37,5 +37,13 @@ namespace SkyWalker.Dal.Entities
         /// 电话号码
         /// </summary>
         public string Phone { get; set; }
+        
+
+        /// <summary>
+        /// 描述信息
+        /// </summary>
+        public string Describe { get; set; }
+             
+        public DateTime Brithday { get; set; }
     }
 }

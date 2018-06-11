@@ -4,12 +4,9 @@ using System.Text;
 
 namespace SkyWalker.Dal.Entities
 {
-   public class Book
+   public class Book : Entity
     {   
-        /// <summary>
-        /// 书籍ID
-        /// </summary>
-        public int BookId { get; set; }
+       
         public int UserId { get; set; }
         /// <summary>
         /// 书名

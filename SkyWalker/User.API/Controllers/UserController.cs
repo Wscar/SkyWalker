@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkyWalker.Dal.DBContext;
 using SkyWalker.Dal.Entities;
+using SkyWalker.Dal.Repository;
 namespace User.API.Controllers
 {
     [Produces("application/json")]
@@ -15,16 +16,19 @@ namespace User.API.Controllers
     public class UserController : Controller
     {
         private readonly SkyWalkerDbContext dbContext;
-        public UserController(SkyWalkerDbContext _dbContext)
+        private readonly IRepository<AppUser> userRepository;
+        public UserController(SkyWalkerDbContext _dbContext, IRepository<AppUser> _repository)
         {
             dbContext = _dbContext;
+            userRepository = _repository;
         }
         [HttpGet]
-        [Route("")]
+        [Route("{id}")]
         public async Task<IActionResult> GetUserAsync(int id) 
         {
             Dictionary<string, AppUser> result = new Dictionary<string, AppUser>();
-            var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
+            //var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
+            var user = await userRepository.GetAsync(id);
             if (user == null)
             {
                 result.Add("error", null);
@@ -56,7 +60,7 @@ namespace User.API.Controllers
             return Json(result);
         }
         [HttpDelete]
-        [Route("")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteUserAsync(int id)
         {
             Dictionary<string, bool> result = new Dictionary<string, bool>();
