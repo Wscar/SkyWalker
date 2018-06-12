@@ -12,7 +12,7 @@ namespace SkyWalker.Dal.Entities
         /// <summary>
         /// 用户账号
         /// </summary>
-        public string UserId { get; set; }
+        public string UserId {get; set; }
 
         /// <summary>
         /// 用户昵称

@@ -45,10 +45,10 @@ namespace User.API.Controllers
         public async Task<IActionResult> UpdateUserAsync([FromBody]JsonPatchDocument<AppUser> patch)
         {
             Dictionary<string, AppUser> result = new Dictionary<string, AppUser>();
-            var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == 1);
+            var user = await userRepository.GetAsync(1);
             patch.ApplyTo(user);
-            user= dbContext.AppUsers.Update(user).Entity;
-            var dbResult= await dbContext.SaveChangesAsync();
+            var dbResult = await userRepository.UpdateAsync(user);
+           
             if (dbResult > 0)
             {
                 result.Add("success", user);
@@ -65,8 +65,8 @@ namespace User.API.Controllers
         {
             Dictionary<string, bool> result = new Dictionary<string, bool>();
             var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
-             dbContext.AppUsers.Remove(user);
-            var dbResult= await dbContext.SaveChangesAsync();
+
+            var dbResult = await userRepository.DeltetAsync(user);
             if (dbResult > 0)
             {
               
