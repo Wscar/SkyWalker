@@ -31,6 +31,14 @@ namespace SkyWalker.Dal.Repository
             return await connection.ExecuteAsync(sql, param);
         }
 
+        public async Task<List<Book>> GetAllAsync(string userId)
+        {
+            string sql = "selete from skywalker.book a " +
+                 "      where a.user_id=@userId";
+            var param = new { userId };
+            return (await connection.QueryAsync<Book>(sql, param)).ToList();
+        }
+
         public async Task<Book> GetAsync(int id)
         {
             string sql = "select * from skywalker.book a where a.id=@id";

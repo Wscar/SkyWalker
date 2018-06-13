@@ -11,5 +11,6 @@ namespace SkyWalker.Dal.Repository
         Task< int> AddAsync(T entity);
         Task<int> UpdateAsync(T entity);
         Task<int> DeltetAsync(T entity);
+        Task<List<T>> GetAllAsync(string userId);
     }
 }

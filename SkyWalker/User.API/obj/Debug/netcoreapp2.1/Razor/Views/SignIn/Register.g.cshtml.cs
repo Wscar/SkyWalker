@@ -71,12 +71,12 @@ using User.API.ViewModel;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
             EndContext();
             BeginContext(119, 121, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b641ba90fffa46fe958d2d9b138c0e72", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e7b41fedbdc4d4f88e4d7df705f81d7", async() => {
                 BeginContext(125, 60, true);
                 WriteLiteral("\r\n    <meta charset=\"UTF-8\">\r\n    <title>Title</title>\r\n    ");
                 EndContext();
                 BeginContext(185, 46, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "094f93c849ee4d31b3c32ebedb2ba132", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2dd8591379c542e49ea549690aeb00e3", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -110,7 +110,7 @@ using User.API.ViewModel;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(242, 1407, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "26bdb2df3b3e4d2a8c10205cd87ab928", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ced7f81658043daa314fec24c323092", async() => {
                 BeginContext(248, 370, true);
                 WriteLiteral(@"
     <div class=""login"">
@@ -125,12 +125,12 @@ using User.API.ViewModel;
                         ");
                 EndContext();
                 BeginContext(618, 803, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f954fb4bba74d3581cb48082d6ac033", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "346513dd204e47929e98bd5bc6892af2", async() => {
                     BeginContext(624, 92, true);
                     WriteLiteral("\r\n                            <div class=\"login-username\">\r\n                                ");
                     EndContext();
                     BeginContext(716, 72, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d95bfe4394c74d1484bc17c06e22884d", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "172a85db16294b01b9aac887a2c1712e", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -158,7 +158,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                            </div>\r\n                            <div class=\"login-pwd\">\r\n                                ");
                     EndContext();
                     BeginContext(911, 70, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0dddd2de44c2442eb82adb64c88c2a79", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "5cf61c0057fe44079b2a9f35eab7a95f", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -186,7 +186,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                            </div>\r\n                            <div class=\"register-confirm-pwd\">\r\n                                ");
                     EndContext();
                     BeginContext(1115, 79, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ea15865b13cd4af3a5e7d0b2719fce19", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "135d37cfde284de6a2f40e70f557a1b5", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

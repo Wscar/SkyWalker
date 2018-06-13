@@ -78,5 +78,19 @@ namespace User.API.Controllers
                 return Ok("删除失败");
             }
         }
+        [HttpGet]
+        [Route("all_book/{userId}")]
+        public async Task<IActionResult> GetAllBook(string userId)
+        {
+            var books = await bookRepository.GetAllAsync(userId);
+            if (books != null && books.Count > 0)
+            {
+                return Ok(books);
+            }
+            else
+            {
+                return Ok("获取失败");
+            }
+        }
     }
 }

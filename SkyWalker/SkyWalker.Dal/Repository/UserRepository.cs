@@ -41,6 +41,11 @@ namespace SkyWalker.Dal.Repository
             return await connection.ExecuteAsync(sql, param);
         }
 
+        public Task<List<AppUser>> GetAllAsync(string  userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<AppUser> GetAsync(int id)
        {
             string sql = "select * from AppUser a where  a.userid=@id";
