@@ -9,6 +9,7 @@
       "BookControllerTest/1.0.0": {
         "dependencies": {
           "FluentAssertions": "5.4.0",
+          "Microsoft.AspNetCore.JsonPatch": "2.1.0",
           "Microsoft.NET.Test.Sdk": "15.7.0",
           "SkyWalker.Dal": "1.0.0",
           "User.API": "1.0.0",

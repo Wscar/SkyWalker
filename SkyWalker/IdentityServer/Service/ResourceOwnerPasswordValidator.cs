@@ -10,13 +10,19 @@ namespace IdentityServer.Service
 {
     public class ResourceOwnerPasswordValidator: IResourceOwnerPasswordValidator
     {
+        private readonly IAccountService accountService;
+         public ResourceOwnerPasswordValidator(IAccountService _accountService)
+        {
+            accountService = _accountService;
+        }
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
-            if (context.UserName == "yemobai" && context.Password == "123")
+            var accountResult = await accountService.SignInAsync(context.UserName, context.Password);
+            if (accountResult.Status == "查询成功")
             {
-                context.Result = new GrantValidationResult(context.UserName, "admin", GetUserClaim());
-
+                context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim());
             }
+        
             else
             {
                 //验证失败

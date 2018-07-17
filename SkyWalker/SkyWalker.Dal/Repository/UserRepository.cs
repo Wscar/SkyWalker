@@ -19,7 +19,7 @@ namespace SkyWalker.Dal.Repository
         public async Task<int> AddAsync(AppUser entity)
         {
             string sql = "insert into appuser(userid,avatar,sex,username,userpassword,phone,describe,brithday)" +
-                       "value(@id,@avatar,@sex,@username,@userpassword,@phone,@describe,@brithday)   ";
+                       "value(@id,@avatar,@sex,@username,@userpassword,@phone,@describe,@brithday)";
             var param = new
             {
                 id = entity.UserId,
@@ -41,14 +41,14 @@ namespace SkyWalker.Dal.Repository
             return await connection.ExecuteAsync(sql, param);
         }
 
-        public Task<List<AppUser>> GetAllAsync(string  userId)
+        public Task<List<AppUser>> GetAllAsync(int userId)
         {
             throw new NotImplementedException();
         }
 
         public async Task<AppUser> GetAsync(int id)
        {
-            string sql = "select * from AppUser a where  a.userid=@id";
+            string sql = "select * from AppUser a where  a.id=@id";
             var param = new { id };
              var result= await connection.QueryAsync<AppUser>(sql, param);
             return result.FirstOrDefault();

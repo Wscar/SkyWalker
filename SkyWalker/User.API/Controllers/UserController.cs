@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using SkyWalker.Dal.DBContext;
 using SkyWalker.Dal.Entities;
 using SkyWalker.Dal.Repository;
+using User.API.Dtos;
+using User.API.Exceptions;
 namespace User.API.Controllers
 {
     [Produces("application/json")]
@@ -24,60 +26,67 @@ namespace User.API.Controllers
         }
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetUserAsync(int id) 
+        public async Task<IActionResult> GetUserAsync(int id)
         {
-            Dictionary<string, AppUser> result = new Dictionary<string, AppUser>();
+            UserDto userDto = new UserDto();           
             //var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
-            var user = await userRepository.GetAsync(id);
-            if (user == null)
-            {
-                result.Add("error", null);
-            }
-            else
-            {
-                result.Add("success", user);
-            }
-                
-            return Json(result);
+                var user = await userRepository.GetAsync(id);
+                if (user == null)
+                {
+                    userDto.Status = EntityStatus.Fail;
+                    var ex = new SkyWalkerException($"错误的用户id:{id}");
+                    throw ex;
+                }
+                else
+                {
+                    userDto.Status = EntityStatus.Suceess;
+                    userDto.User = user;
+                }                                
+            return Json(userDto);
+
+            // return Json(userDto);
         }
         [HttpPatch]
         [Route("")]
         public async Task<IActionResult> UpdateUserAsync([FromBody]JsonPatchDocument<AppUser> patch)
         {
-            Dictionary<string, AppUser> result = new Dictionary<string, AppUser>();
+            UserDto userDto = new UserDto();
             var user = await userRepository.GetAsync(1);
             patch.ApplyTo(user);
             var dbResult = await userRepository.UpdateAsync(user);
            
             if (dbResult > 0)
             {
-                result.Add("success", user);
+                userDto.Status = EntityStatus.Suceess;
+                userDto.User = user;
             }
             else
             {
-                result.Add("fail", user);
+                userDto.Status = EntityStatus.Fail;
+                userDto.Message = "更新失败";
             }          
-            return Json(result);
+            return Json(userDto);
         }
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteUserAsync(int id)
         {
-            Dictionary<string, bool> result = new Dictionary<string, bool>();
+            UserDto userDto = new UserDto();
             var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
 
             var dbResult = await userRepository.DeltetAsync(user);
             if (dbResult > 0)
             {
-              
-                result.Add("del_user", true);
+                userDto.Status = EntityStatus.Suceess;
+                userDto.User = user;
             }
             else
             {
-                result.Add("del_user", false);
+                userDto.Status = EntityStatus.Fail;
+                userDto.Message = "删除失败";
             }
            
-            return Json(result);
+            return Json(user);
         }
     }
 }

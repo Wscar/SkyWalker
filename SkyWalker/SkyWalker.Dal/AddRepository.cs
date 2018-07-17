@@ -16,7 +16,7 @@ namespace SkyWalker.Dal
             services.AddTransient<Comment>();
             services.AddTransient<Book>();
             services.AddScoped<IRepository<AppUser>, UserRepository>();
-            
+            services.AddScoped<IStoryRepository, StoryRepository>();
         }
     }
 }

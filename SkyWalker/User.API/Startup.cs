@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Reflection;
 using SkyWalker.Dal;
 using MySql.Data.MySqlClient;
+using User.API.Filters;
 namespace User.API
 {
     public class Startup
@@ -58,20 +59,31 @@ namespace User.API
                     options.Authority = "http://localhost:56454";
                     options.SaveToken = true;
                 });
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(GlobalExceptionFilter));
+                
+            });
             
             services.ConfigRepository();
             services.AddScoped(c => new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(buider =>
+            {
+                buider.WithOrigins("http://localhost:8080")
+                .AllowAnyHeader();
+            });
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseIdentityServer();

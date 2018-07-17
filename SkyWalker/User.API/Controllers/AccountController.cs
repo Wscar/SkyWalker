@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using User.API.ViewModel;
 using SkyWalker.Dal.DBContext;
 using SkyWalker.Dal.Entities;
+using SkyWalker.Dal.Service;
 
 namespace User.API.Controllers
 {
@@ -14,28 +15,23 @@ namespace User.API.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        public readonly SkyWalkerDbContext UserDbContext;
-        public AccountController(SkyWalkerDbContext _userDbContext)
+        private readonly IAccountService accountService;
+        public AccountController(IAccountService _accountService)
         {
-            this.UserDbContext = _userDbContext;
+            accountService = _accountService;
         }
         [HttpPost]
         [Route("register")]
-        public async Task< IActionResult> Register([FromForm] RegisterViewModel viewModel)
+        public async Task< IActionResult> Register([FromBody] RegisterViewModel viewModel)
         {
-            var appUser = new AppUser
-            {
-                UserId = viewModel.UserId,
-                UserPassWord = viewModel.Password
-            };
-            await UserDbContext.AppUsers.AddAsync(appUser);
-            await UserDbContext.SaveChangesAsync();
+           
             return Json(new { Status = "success", Msg = "注册成功" });
         }
         
-        public IActionResult LogIn()
+        public async Task<IActionResult>SignIn(string userId,string passWord)
         {
-            return View();
+          var result=await accountService.SignInAsync(userId, passWord);
+            return Ok(result);
         }
         [HttpGet]
         [Route("test")]

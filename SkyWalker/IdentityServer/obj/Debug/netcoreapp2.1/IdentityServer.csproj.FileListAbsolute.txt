@@ -11,3 +11,4 @@ F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\Identity
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorTargetAssemblyInfo.cache
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.dll
 F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.pdb
+F:\MyProject\SkyWalker\SkyWalker\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.csprojAssemblyReference.cache

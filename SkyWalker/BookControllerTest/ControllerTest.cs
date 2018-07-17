@@ -11,6 +11,7 @@ using Dapper;
 using SkyWalker.Dal.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
+using System.Linq;
 namespace BookControllerTest
 {
     public class ControllerTest
@@ -71,7 +72,7 @@ namespace BookControllerTest
             var controller = this.GetController();
             var document = new JsonPatchDocument<Book>();
             document.Replace(x => x.Preface, "长路慢慢，为剑所伴");
-            var response = await controller.Pacth(document, 1);
+            var response = await controller.Pacth(document, 4);
             var result = response.Should().BeOfType<OkObjectResult>().Subject;
             var value = result.Value.Should().BeAssignableTo<Book>().Subject;
             value.UserId.Should().Be(2);
@@ -84,6 +85,15 @@ namespace BookControllerTest
             var result = resonse.Should().BeOfType<OkObjectResult>().Subject;
             var value = result.Value.Should().BeAssignableTo<string>().Subject;
             value.Should().Be("删除成功");
+        }
+        [Fact]
+        public async void Get_ReturnRightAllBook_WithExpectedParamerters()
+        {
+            var controller = this.GetController();
+            var response = await controller.GetAllBook(2);
+            var result = response.Should().BeOfType<OkObjectResult>().Subject;
+            var value = result.Value.Should().BeAssignableTo<List<Book>>().Subject;
+            value.First().UserId.Should().Be(2);
         }
     }
 }
