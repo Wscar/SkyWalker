@@ -1,0 +1,14 @@
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\bin\Debug\netcoreapp2.1\Gateway.Api.deps.json
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\bin\Debug\netcoreapp2.1\Gateway.Api.runtimeconfig.json
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\bin\Debug\netcoreapp2.1\Gateway.Api.runtimeconfig.dev.json
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\bin\Debug\netcoreapp2.1\Gateway.Api.dll
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\bin\Debug\netcoreapp2.1\Gateway.Api.pdb
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.csprojAssemblyReference.cache
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.csproj.CoreCompileInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.RazorAssemblyInfo.cache
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.RazorAssemblyInfo.cs
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.AssemblyInfoInputs.cache
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.AssemblyInfo.cs
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.RazorTargetAssemblyInfo.cache
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.dll
+F:\MyProject\SkyWalker\SkyWalker\Gateway.Api\obj\Debug\netcoreapp2.1\Gateway.Api.pdb

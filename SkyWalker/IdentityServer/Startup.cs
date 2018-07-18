@@ -9,6 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using IdentityServer.Dtos;
+using IdentityServer.Infrastructure;
+using Resilience.HttpInterface;
+using Microsoft.AspNetCore.Http;
+using Resilience;
 
 namespace IdentityServer
 {
@@ -32,6 +37,23 @@ namespace IdentityServer
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
                 .AddProfileService<ProfileService>()
                 .AddCorsPolicyService<CorsPolicyService>();
+            services.AddScoped<IAccountService, AccountService>();
+            //获取配置文件中的服务发现
+            services.Configure<ServiceDiscoveryOptions>(Configuration.GetSection("ServiceDiscovery"));
+            services.AddSingleton(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<ResilienceHttpClient>>();
+                var httpContextAccesor = sp.GetRequiredService<IHttpContextAccessor>();
+                int retryCount = 3;
+                var exceptionCountAllowBeforeBreaker = 3;
+                var factory = new ResilienceClientFactory(logger, httpContextAccesor, retryCount, exceptionCountAllowBeforeBreaker);
+                return factory;
+            });
+            //注册全局单例IHttpClient
+            services.AddSingleton<IHttpClient>(sp =>
+            {
+               return sp.GetRequiredService<ResilienceClientFactory>().GetResilienceHttpClient();
+            });
             services.AddMvc();
         }
 

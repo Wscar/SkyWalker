@@ -44,9 +44,9 @@ namespace Resilience.HttpInterface
         private Task<HttpResponseMessage> DoPostAsync(HttpMethod method, string url, Func<HttpRequestMessage> httpRequestMessageFunc, string authorizationToken, string requestId = "", string authorizationMethod = "Bearer")
         {   
             //判断请求是否时Post请求或者Put请求
-            if (method != HttpMethod.Post || method != HttpMethod.Put)
+            if (method != HttpMethod.Post&& method != HttpMethod.Put)
             {
-                throw new ArgumentException("Value must be either post or  put ", nameof(method));
+                throw new ArgumentException("Value must be either post or  put ", "DoPostAsync方法");
             }
             var origin = GetOriginFromUri(url);
             //进行Http调用

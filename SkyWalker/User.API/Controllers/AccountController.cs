@@ -27,10 +27,13 @@ namespace User.API.Controllers
            
             return Json(new { Status = "success", Msg = "注册成功" });
         }
-        
+        [HttpPost]
+        [Route("signin")]
         public async Task<IActionResult>SignIn(string userId,string passWord)
         {
-          var result=await accountService.SignInAsync(userId, passWord);
+            var result = new SkyWalker.Dal.Dtos.AccountResult();
+            result.Status = "登陆成功";
+            result.User = new AppUser { Id = 1 };
             return Ok(result);
         }
         [HttpGet]

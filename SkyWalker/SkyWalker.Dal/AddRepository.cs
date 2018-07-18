@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using SkyWalker.Dal.Entities;
 using SkyWalker.Dal.Repository;
-
+using SkyWalker.Dal.Service;
 namespace SkyWalker.Dal
 {
    public static class AddRepository
@@ -17,6 +17,7 @@ namespace SkyWalker.Dal
             services.AddTransient<Book>();
             services.AddScoped<IRepository<AppUser>, UserRepository>();
             services.AddScoped<IStoryRepository, StoryRepository>();
+            services.AddScoped<IAccountService, AccountService>();
         }
     }
 }

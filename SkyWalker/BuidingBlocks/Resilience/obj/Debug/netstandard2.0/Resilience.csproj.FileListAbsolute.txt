@@ -1,9 +1,9 @@
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\bin\Debug\netstandard2.0\Resilience.deps.json
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\bin\Debug\netstandard2.0\Resilience.dll
-F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.csprojAssemblyReference.cache
+F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\bin\Debug\netstandard2.0\Resilience.pdb
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.csproj.CoreCompileInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.AssemblyInfoInputs.cache
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.AssemblyInfo.cs
-F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\bin\Debug\netstandard2.0\Resilience.pdb
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.dll
 F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.pdb
+F:\MyProject\SkyWalker\SkyWalker\BuidingBlocks\Resilience\obj\Debug\netstandard2.0\Resilience.csprojAssemblyReference.cache

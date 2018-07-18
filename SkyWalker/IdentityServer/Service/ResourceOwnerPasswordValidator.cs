@@ -18,11 +18,10 @@ namespace IdentityServer.Service
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
             var accountResult = await accountService.SignInAsync(context.UserName, context.Password);
-            if (accountResult.Status == "查询成功")
+            if (accountResult.Status=="登陆成功")
             {
                 context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim());
-            }
-        
+            }       
             else
             {
                 //验证失败
