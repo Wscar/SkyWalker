@@ -36,7 +36,8 @@ namespace IdentityServer
                 .AddInMemoryClients(Config.GetClients())
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
                 .AddProfileService<ProfileService>()
-                .AddCorsPolicyService<CorsPolicyService>();
+                .AddCorsPolicyService<CorsPolicyService>()
+                ;
             services.AddScoped<IAccountService, AccountService>();
             //获取配置文件中的服务发现
             services.Configure<ServiceDiscoveryOptions>(Configuration.GetSection("ServiceDiscovery"));

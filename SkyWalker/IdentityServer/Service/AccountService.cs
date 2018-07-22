@@ -27,12 +27,12 @@ namespace IdentityServer.Service
                 var postData = new Dictionary<string, string>();
                 postData.Add("userId", userId);
                 postData.Add("passWord", passWord);
-                var content = new FormUrlEncodedContent(postData);
-               var  response=  await httpClient.PostAsync(url, content);
+              //  var content = new FormUrlEncodedContent(postData);
+               var  response=  await httpClient.PostAsync(url, postData);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    var accountResult = JsonConvert.DeserializeObject<AccountResult>(result);
+                    var accountResult = JsonConvert.DeserializeObject<AccountResult>(result);                   
                     return accountResult;
                 }
             }

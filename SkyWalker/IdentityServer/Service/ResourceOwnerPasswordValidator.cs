@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
+using IdentityServer.Dtos;
 namespace IdentityServer.Service
 {
     public class ResourceOwnerPasswordValidator: IResourceOwnerPasswordValidator
@@ -20,7 +20,7 @@ namespace IdentityServer.Service
             var accountResult = await accountService.SignInAsync(context.UserName, context.Password);
             if (accountResult.Status=="登陆成功")
             {
-                context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim());
+                context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim(accountResult.User));
             }       
             else
             {
@@ -28,9 +28,14 @@ namespace IdentityServer.Service
                 context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, "密码错误");
             }
         }
-        public Claim[] GetUserClaim()
+        public Claim[] GetUserClaim(UserInfo userInfo)
         {
-            return new Claim[] { new Claim("userid", "1"), new Claim("avatar", "无") };
+            //var claims=  new Claim[] { new Claim("USERID",userInfo.UserId),new Claim("USERNAME",userInfo.UserName),
+            //                      new Claim("USERPASSWORD",userInfo.UserPassWord),new Claim("AVATAR",userInfo.Avatar??"无"),
+            //                      new Claim("SEX",userInfo.Sex.ToString()??"无"),new Claim("DESCRIBE",userInfo.Describe??"无"),
+            //                       new Claim("PHONE",userInfo.Phone??"无"),new Claim("BIRTHDAY",userInfo.Brithday.ToString("yyyy-MM-dd HH:mm:ss")??DateTime.Now.ToShortDateString())};
+            var claims = new Claim[] { new Claim("USERID", userInfo.UserId), new Claim("USERNAME", userInfo.UserName) };
+            return claims;
         }
     }
 }

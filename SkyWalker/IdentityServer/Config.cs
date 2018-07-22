@@ -22,7 +22,7 @@ namespace IdentityServer
         {
             return new List<ApiResource>
             {
-               // new ApiResource("gateway_api","gateway service"),
+                new ApiResource("gateway_api","gateway service"),
 
                 new ApiResource("user_api","user_api service"),
                 //并且要把contactapi加入到apiResource,并加入到 client的allowedScopes中 
@@ -39,16 +39,15 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
                     ClientSecrets = { new Secret("yemobai".Sha256()) },
-                     RefreshTokenUsage=TokenUsage.ReUse,
-                   
+                     RefreshTokenUsage=TokenUsage.ReUse,                   
                      AlwaysIncludeUserClaimsInIdToken = true,                 
-                    //AllowOfflineAccess = true,
+                     AllowOfflineAccess = true,
                     AllowedScopes=new List<string>
                     {
                         "user_api",
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.OpenId,
-                   // IdentityServerConstants.StandardScopes.OfflineAccess
+                    IdentityServerConstants.StandardScopes.OfflineAccess
                     }
 
               }

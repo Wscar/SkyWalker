@@ -20,11 +20,12 @@ namespace SkyWalker.Dal.Service
         {
             var accountResult = new AccountResult();
             try
-            {
+            {   
                 //判断用户名是否存在
                 string sql = @"select  * from skywalker.AppUser a
                          where a.UserId=@userId";
                 var param = new { userId };
+           
                 var user = (await conn.QueryAsync<AppUser>(sql, param)).FirstOrDefault();
              
                 if (user.UserId == userId && user.UserPassWord == passWord)
