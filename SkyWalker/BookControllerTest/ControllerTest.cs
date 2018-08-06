@@ -40,7 +40,7 @@ namespace BookControllerTest
             return 2;
         }
         [Fact]
-        public async void Post_AddRightUser_WithExpectedParamerters()
+        public async void Post_AddRightBook_WithExpectedParamerters()
         {
             var book = new Book
             {

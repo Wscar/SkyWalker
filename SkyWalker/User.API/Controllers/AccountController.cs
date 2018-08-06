@@ -31,7 +31,8 @@ namespace User.API.Controllers
         [Route("signin")]
         public async Task<IActionResult>SignIn(string userId,string passWord)
         {
-            var result=await  accountService.SignInAsync(userId, passWord);         
+            var result=await  accountService.SignInAsync(userId, passWord);  
+             //注册成功，采用事件，直接通知文件服务，给用户自动添加一个头像。
             return Ok(result);
         }
         [HttpGet]

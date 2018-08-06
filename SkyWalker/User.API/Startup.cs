@@ -19,6 +19,12 @@ using System.Reflection;
 using SkyWalker.Dal;
 using MySql.Data.MySqlClient;
 using User.API.Filters;
+
+using User.API.ConfigOptions;
+using Consul;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+
 namespace User.API
 {
     public class Startup
@@ -64,13 +70,23 @@ namespace User.API
                 options.Filters.Add(typeof(GlobalExceptionFilter));
                 
             });
-            
+            services.Configure<ServiceDiscoveryOptions>(Configuration.GetSection("ServiceDiscovery"));
             services.ConfigRepository();
+            services.AddSingleton<IConsulClient>(p => new ConsulClient(consul =>
+            {
+                var serviceConfigation = p.GetRequiredService<IOptions<ServiceDiscoveryOptions>>().Value;
+                if (!string.IsNullOrEmpty(serviceConfigation.Consul.HttpEndpoint))
+                {
+                    consul.Address = new Uri(serviceConfigation.Consul.HttpEndpoint);
+                }
+            }));
             services.AddScoped(c => new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString")));
+            services.Configure<AppSetting>(Configuration.GetSection("ConnectionStrings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IApplicationLifetime applicationLifetime, IOptions<ServiceDiscoveryOptions> options, IConsulClient consul)
         {
             if (env.IsDevelopment())
             {
@@ -93,7 +109,52 @@ namespace User.API
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            //注册服务
+            applicationLifetime.ApplicationStarted.Register(() => RegisterService(app, options, consul));
+            applicationLifetime.ApplicationStopped.Register(() => { DeRegisterService(app, options, consul); });
         }
+        #region 服务发现
+        public void RegisterService(IApplicationBuilder app,IOptions<ServiceDiscoveryOptions>  serviceOptions,IConsulClient consulClient)
+        {
+            //获取本地服务地址
+            var features=app.Properties["server.Features"] as FeatureCollection;
+            var address = features.Get<IServerAddressesFeature>().Addresses.Select(x => new Uri(x));
+            foreach(var addr in address)
+            {
+                var serverId = $"{serviceOptions.Value.ServiceName}_{addr.Host}:{addr.Port}";
+                var httpCheck = new AgentServiceCheck
+                {
+                    DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
+                    Interval = TimeSpan.FromSeconds(30),
+                    HTTP = new Uri(addr, "healthCheck").OriginalString
+                };
+                var registration = new AgentServiceRegistration
+                {
+                    Checks = new[] { httpCheck },
+                    Address =$"{addr.Scheme}://{addr.Port}",
+                    ID = serverId,
+                    Name = serviceOptions.Value.ServiceName,
+                    Port = addr.Port,
+                    Tags = new[] { "skyWalke_user_api" }
+
+
+                };
+                consulClient.Agent.ServiceRegister(registration).Wait();
+            }
+        }
+        public void DeRegisterService(IApplicationBuilder app, IOptions<ServiceDiscoveryOptions> ServiceOptions,
+           IConsulClient consul)
+        {
+            //获取本地服务地址
+            var features = app.Properties["server.Features"] as FeatureCollection;
+            var address = features.Get<IServerAddressesFeature>()
+                .Addresses.Select(x => new Uri(x));
+            foreach (var addr in address)
+            {
+                var serverId = $"{ ServiceOptions.Value.ServiceName}_{addr.Host}:{addr.Port}";
+                consul.Agent.ServiceDeregister(serverId).GetAwaiter().GetResult();
+            }
+        }
+        #endregion
     }
 }

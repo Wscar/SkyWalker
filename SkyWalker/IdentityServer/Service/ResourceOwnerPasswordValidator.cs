@@ -10,7 +10,7 @@ namespace IdentityServer.Service
 {
     public class ResourceOwnerPasswordValidator: IResourceOwnerPasswordValidator
     {
-        private readonly IAccountService accountService;
+         private readonly IAccountService accountService;
          public ResourceOwnerPasswordValidator(IAccountService _accountService)
         {
             accountService = _accountService;
@@ -21,7 +21,8 @@ namespace IdentityServer.Service
             if (accountResult.Status=="登陆成功")
             {
                 context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim(accountResult.User));
-            }       
+            }
+           
             else
             {
                 //验证失败
@@ -30,12 +31,13 @@ namespace IdentityServer.Service
         }
         public Claim[] GetUserClaim(UserInfo userInfo)
         {
-            //var claims=  new Claim[] { new Claim("USERID",userInfo.UserId),new Claim("USERNAME",userInfo.UserName),
-            //                      new Claim("USERPASSWORD",userInfo.UserPassWord),new Claim("AVATAR",userInfo.Avatar??"无"),
-            //                      new Claim("SEX",userInfo.Sex.ToString()??"无"),new Claim("DESCRIBE",userInfo.Describe??"无"),
-            //                       new Claim("PHONE",userInfo.Phone??"无"),new Claim("BIRTHDAY",userInfo.Brithday.ToString("yyyy-MM-dd HH:mm:ss")??DateTime.Now.ToShortDateString())};
+            
             var claims = new Claim[] { new Claim("USERID", userInfo.UserId), new Claim("USERNAME", userInfo.UserName) };
             return claims;
         }
+        //var claims=  new Claim[] { new Claim("USERID",userInfo.UserId),new Claim("USERNAME",userInfo.UserName),
+        //                      new Claim("USERPASSWORD",userInfo.UserPassWord),new Claim("AVATAR",userInfo.Avatar??"无"),
+        //                      new Claim("SEX",userInfo.Sex.ToString()??"无"),new Claim("DESCRIBE",userInfo.Describe??"无"),
+        //                       new Claim("PHONE",userInfo.Phone??"无"),new Claim("BIRTHDAY",userInfo.Brithday.ToString("yyyy-MM-dd HH:mm:ss")??DateTime.Now.ToShortDateString())};
     }
 }

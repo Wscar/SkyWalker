@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -87,6 +88,25 @@ namespace User.API.Controllers
             }
            
             return Json(user);
+        }
+        [HttpPost]
+        [Route("upLoadAvatar")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UpLoadImage(List<IFormFile> files)
+        {
+            long size = files.Sum(x => x.Length);
+            var filePath = @"C:\Users\夜莫白\Desktop\图片接口.jpg";
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+            return Ok(new { status = "文件上传完成", filePath });
         }
     }
 }

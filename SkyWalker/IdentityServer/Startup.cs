@@ -65,6 +65,8 @@ namespace IdentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
+           
+         
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             app.UseIdentityServer();
