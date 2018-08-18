@@ -28,3 +28,5 @@ F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.1\User.API.Views
 F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.1\User.API.csproj.CopyComplete
 F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.1\User.API.dll
 F:\MyProject\SkyWalker\SkyWalker\User.API\obj\Debug\netcoreapp2.1\User.API.pdb
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.1\EventBus.dll
+F:\MyProject\SkyWalker\SkyWalker\User.API\bin\Debug\netcoreapp2.1\EventBus.pdb

@@ -7,10 +7,10 @@ namespace SkyWalker.Dal.Repository
 {
    public interface IRepository<T> where T:Entities.Entity
     {
-        Task< T> GetAsync(int id);
+        Task< T> GetAsync(object id);
         Task< int> AddAsync(T entity);
         Task<int> UpdateAsync(T entity);
         Task<int> DeltetAsync(T entity);
-        Task<List<T>> GetAllAsync(int userId);
+        Task<List<T>> GetAllAsync(object Id);
     }
 }

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BuidingBlocks\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\..\SkyWalker.Dal\SkyWalker.Dal.csproj" />
     <ProjectReference Include="..\..\User.API\User.API.csproj" />
   </ItemGroup>

@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.JsonPatch;
 using SkyWalker.Dal.Repository;
 using User.API.Dtos;
 using User.API.Exceptions;
+using System.IO;
+
 namespace User.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StoryController : ControllerBase
+    public class StoryController : BaseController
     {
         private readonly IStoryRepository storyRepository;
         public StoryController(IStoryRepository _storyRepository)
@@ -39,6 +41,8 @@ namespace User.API.Controllers
             }
             return Ok(stories);
         }
+        [HttpGet]
+        [Route("story/{storyId}:int")]
         public async Task<IActionResult> GetStory(int storyId)
         {
             var story = await storyRepository.GetStoryAsync(storyId);
@@ -54,6 +58,8 @@ namespace User.API.Controllers
             }
             return Ok(story);
         }
+        [HttpPost]
+        [Route("")]
         public async Task<IActionResult> AddStory(Story story)
         {
             StoryDto storyDto = new StoryDto();
@@ -69,6 +75,8 @@ namespace User.API.Controllers
             }
             return Ok(storyDto);
         }
+        [HttpPatch]
+        [Route("")]
         public async Task<IActionResult> UpdateStory([FromBody] JsonPatchDocument<Story> patch,int storyId)
         {
             StoryDto storyDto = new StoryDto();
@@ -88,6 +96,8 @@ namespace User.API.Controllers
             }
             return Ok(storyDto);
         }
+        [HttpDelete]
+        [Route("{storyId}:int")]
         public async Task<IActionResult> DeleteStory(int storyId)
         {
             StoryDto storyDto = new StoryDto();
@@ -103,6 +113,24 @@ namespace User.API.Controllers
                 storyDto.Message = $"删除故事出错，故事Id{storyId},受影响的行数小于等于0";
             }
             return Ok(storyDto);
+        }
+        [HttpPost]
+        [Route("uploadimage")]
+        public async Task<IActionResult> UpLoadImage([FromForm] List<IFormFile> files)
+        {
+            var filePath = @"C:\Users\夜莫白\Desktop\图片接口.jpg";
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+            //给前端返回fileName
+            return Ok(new { status = "文件上传完成", filePath });
         }
     }
 }

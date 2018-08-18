@@ -19,3 +19,5 @@ F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\obj\Debug\netcoreapp2.1\UserT
 F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\obj\Debug\netcoreapp2.1\UserTest.csproj.CopyComplete
 F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\obj\Debug\netcoreapp2.1\UserTest.dll
 F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\obj\Debug\netcoreapp2.1\UserTest.pdb
+F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\bin\Debug\netcoreapp2.1\EventBus.dll
+F:\MyProject\SkyWalker\SkyWalker\UnitTest\UserTest\bin\Debug\netcoreapp2.1\EventBus.pdb

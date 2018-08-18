@@ -41,14 +41,25 @@ namespace SkyWalker.Dal.Repository
             return await connection.ExecuteAsync(sql, param);
         }
 
-        public Task<List<AppUser>> GetAllAsync(int userId)
+        public Task<List<AppUser>> GetAllAsync(object userId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<AppUser> GetAsync(int id)
+        public async Task<AppUser> GetAsync(object id)
        {
-            string sql = "select * from AppUser a where  a.id=@id";
+            string sql = @"SELECT  * from 
+                           skywalker.AppUser a
+                          where a.Id = @id
+                            UNION ALL
+                            SELECT* FROM skywalker.AppUser a
+                            where a.UserId =@id
+                            union ALL
+                            select* from skywalker.AppUser a
+                            where a.UserName = @id
+                            union all
+                            select* from skywalker.AppUser a
+                            where a.Phone =@id";
             var param = new { id };
              var result= await connection.QueryAsync<AppUser>(sql, param);
             return result.FirstOrDefault();

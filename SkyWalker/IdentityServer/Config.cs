@@ -41,9 +41,11 @@ namespace IdentityServer
                      RefreshTokenUsage=TokenUsage.ReUse,
                      AlwaysIncludeUserClaimsInIdToken = true,
                      AllowOfflineAccess = true,
+                     AccessTokenLifetime=(int)TimeSpan.FromHours(24).TotalSeconds,
                     AllowedScopes=new List<string>
                     {
                         "user_api",
+                        "gateway_api",
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.OfflineAccess

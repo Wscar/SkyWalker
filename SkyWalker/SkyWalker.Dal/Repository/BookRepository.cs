@@ -31,7 +31,7 @@ namespace SkyWalker.Dal.Repository
             return await connection.ExecuteAsync(sql, param);
         }
 
-        public async Task<List<Book>> GetAllAsync(int userId)
+        public async Task<List<Book>> GetAllAsync(object Id)
         {
             string sql = "select a.id, a.user_id userId,"
                         + "a.book_name bookName,"
@@ -40,11 +40,11 @@ namespace SkyWalker.Dal.Repository
                         + "a.create_time createTime,"
                         + "a.update_time updatetime"
                          + " from skywalker.book a where a.user_id = @userId";
-            var param = new { userId };
+            var param = new { userId=Id };
             return (await connection.QueryAsync<Book>(sql, param)).ToList();
         }
 
-        public async Task<Book> GetAsync(int id)
+        public async Task<Book> GetAsync(object id)
         {
             string sql = "select a.id, a.user_id userId,"
                       + "a.book_name bookName,"

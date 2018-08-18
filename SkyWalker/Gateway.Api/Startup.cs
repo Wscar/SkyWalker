@@ -27,7 +27,7 @@ namespace Gateway.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var authenticationProviderKey = "skw_walker";
+            var authenticationProviderKey = "sky_walker";
             services.AddAuthentication()
                 .AddIdentityServerAuthentication(authenticationProviderKey, options =>
                 {

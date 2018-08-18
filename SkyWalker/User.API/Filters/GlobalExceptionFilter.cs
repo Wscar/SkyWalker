@@ -26,7 +26,6 @@ namespace User.API.Filters
                 var json = new JsonErrResponse
                 {
                     Message = context.Exception.Message
-
                 };
                 context.Result = new BadRequestObjectResult(json);
             }

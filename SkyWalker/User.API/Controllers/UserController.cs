@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ namespace User.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/User")]
-    public class UserController : Controller
+    [Authorize]
+    public class UserController : BaseController
     {
         private readonly SkyWalkerDbContext dbContext;
         private readonly IRepository<AppUser> userRepository;
@@ -26,23 +28,24 @@ namespace User.API.Controllers
             userRepository = _repository;
         }
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetUserAsync(int id)
+        [Route("")]
+        public async Task<IActionResult> GetUserAsync()
         {
-            UserDto userDto = new UserDto();           
+          
+            UserDto userDto = new UserDto();
             //var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
-                var user = await userRepository.GetAsync(id);
-                if (user == null)
-                {
-                    userDto.Status = EntityStatus.Fail;
-                    var ex = new SkyWalkerException($"错误的用户id:{id}");
-                    throw ex;
-                }
-                else
-                {
-                    userDto.Status = EntityStatus.Suceess;
-                    userDto.User = user;
-                }                                
+            var user = await userRepository.GetAsync(this.Identity.UserId);
+            if (user == null)
+            {
+                userDto.Status = EntityStatus.Fail;
+                var ex = new SkyWalkerException($"错误的用户id:{this.Identity.UserId}");
+                throw ex;
+            }
+            else
+            {
+                userDto.Status = EntityStatus.Suceess;
+                userDto.User = user;
+            }
             return Json(userDto);
 
             // return Json(userDto);
@@ -52,10 +55,10 @@ namespace User.API.Controllers
         public async Task<IActionResult> UpdateUserAsync([FromBody]JsonPatchDocument<AppUser> patch)
         {
             UserDto userDto = new UserDto();
-            var user = await userRepository.GetAsync(1);
+            var user = await userRepository.GetAsync(this.Identity.UserId);
             patch.ApplyTo(user);
             var dbResult = await userRepository.UpdateAsync(user);
-           
+
             if (dbResult > 0)
             {
                 userDto.Status = EntityStatus.Suceess;
@@ -65,7 +68,7 @@ namespace User.API.Controllers
             {
                 userDto.Status = EntityStatus.Fail;
                 userDto.Message = "更新失败";
-            }          
+            }
             return Json(userDto);
         }
         [HttpDelete]
@@ -86,7 +89,7 @@ namespace User.API.Controllers
                 userDto.Status = EntityStatus.Fail;
                 userDto.Message = "删除失败";
             }
-           
+
             return Json(user);
         }
         [HttpPost]

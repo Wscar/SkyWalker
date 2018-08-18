@@ -10,20 +10,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SkyWalker.Dal.DBContext;
-using IdentityServer4;
-using Microsoft.AspNetCore.Http;
-using User.API.IdentityServerValidator;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Reflection;
 using SkyWalker.Dal;
 using MySql.Data.MySqlClient;
 using User.API.Filters;
-
+using EventBus;
 using User.API.ConfigOptions;
 using Consul;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using User.API.TestCode;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace User.API
 {
@@ -48,27 +49,40 @@ namespace User.API
                         sql => { sql.MigrationsAssembly(migrationAssembly); }
                         );
                 });
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryApiResources(Config.GetApiResource())
-                .AddInMemoryIdentityResources(Config.GetIdentityResource())
-                .AddInMemoryClients(Config.GetClients())
-                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
-                .AddProfileService<ProfileService>()
-                ;
+           
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
                     options.Audience = "user_api";
-                    options.Authority = "http://localhost:56454";
-                    options.SaveToken = true;
+                    options.Authority = "http://localhost:63894";
+                    options.SaveToken = true;                  
                 });
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(GlobalExceptionFilter));
-                
+
+            });
+            //
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new Info
+                {
+
+                    Version = "v1",
+                    Title = "skyWalker api",
+                    Description = "天行者接口文档",
+                    TermsOfService = "None",
+                    Contact=new Contact { Name="夜莫白",Email="56307885@qq.com"}
+                });
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                //var xmlPath = Path.Combine(basePath, "User.API.xml");
+               // x.IncludeXmlComments(xmlPath);
+
+
+
             });
             services.Configure<ServiceDiscoveryOptions>(Configuration.GetSection("ServiceDiscovery"));
             services.ConfigRepository();
@@ -80,6 +94,8 @@ namespace User.API
                     consul.Address = new Uri(serviceConfigation.Consul.HttpEndpoint);
                 }
             }));
+            services.AddTransient<IEventHandler, FileCreateEventHandler>();
+            services.AddSingleton<IEventBus, PassThroughEventBus>();
             services.AddScoped(c => new MySqlConnection(Configuration.GetConnectionString("MySqlConnectionString")));
             services.Configure<AppSetting>(Configuration.GetSection("ConnectionStrings"));
         }
@@ -93,16 +109,23 @@ namespace User.API
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe();
             app.UseCors(buider =>
             {
                 buider.WithOrigins("http://localhost:8080")
                 .AllowAnyHeader();
             });
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "skyWalker API V1");
+
+            });
+            app.UseSwagger();
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -114,12 +137,12 @@ namespace User.API
             applicationLifetime.ApplicationStopped.Register(() => { DeRegisterService(app, options, consul); });
         }
         #region 服务发现
-        public void RegisterService(IApplicationBuilder app,IOptions<ServiceDiscoveryOptions>  serviceOptions,IConsulClient consulClient)
+        public void RegisterService(IApplicationBuilder app, IOptions<ServiceDiscoveryOptions> serviceOptions, IConsulClient consulClient)
         {
             //获取本地服务地址
-            var features=app.Properties["server.Features"] as FeatureCollection;
+            var features = app.Properties["server.Features"] as FeatureCollection;
             var address = features.Get<IServerAddressesFeature>().Addresses.Select(x => new Uri(x));
-            foreach(var addr in address)
+            foreach (var addr in address)
             {
                 var serverId = $"{serviceOptions.Value.ServiceName}_{addr.Host}:{addr.Port}";
                 var httpCheck = new AgentServiceCheck
@@ -131,7 +154,7 @@ namespace User.API
                 var registration = new AgentServiceRegistration
                 {
                     Checks = new[] { httpCheck },
-                    Address =$"{addr.Scheme}://{addr.Port}",
+                    Address = $"{addr.Scheme}://{addr.Port}",
                     ID = serverId,
                     Name = serviceOptions.Value.ServiceName,
                     Port = addr.Port,

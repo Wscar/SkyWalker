@@ -10,5 +10,6 @@ namespace SkyWalker.Dal.Service
     {
         Task<AccountResult> SignInAsync(string userId, string passWord);
         Task<AccountResult> SignInByPhoneAsync(string phone, string passWord,string validationCode);
+        Task<AccountResult> RegisterAsync(string userId, string passWord,string userName);
     }
 }

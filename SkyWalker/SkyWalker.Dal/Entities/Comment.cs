@@ -11,6 +11,8 @@ namespace SkyWalker.Dal.Entities
         /// 发表评论的用户ID
         /// </summary>
         public int OwnerUserId { get; set; }
+
+        public string OwnerUserName { get; set; }
         /// <summary>
         /// 评论的目标用户ID
         /// </summary>
@@ -27,5 +29,6 @@ namespace SkyWalker.Dal.Entities
         /// 创建评论的时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
     }
 }

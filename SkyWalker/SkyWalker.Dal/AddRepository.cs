@@ -18,6 +18,8 @@ namespace SkyWalker.Dal
             services.AddScoped<IRepository<AppUser>, UserRepository>();
             services.AddScoped<IStoryRepository, StoryRepository>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IRepository<Book>, BookRepository>();
         }
     }
 }

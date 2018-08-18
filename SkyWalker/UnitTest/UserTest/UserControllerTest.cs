@@ -55,7 +55,7 @@ namespace UserTest
             var controller = GetUserController();
             var user = await dbContext.AppUsers.SingleOrDefaultAsync(x => x.Id==1);
             user = dbContext.AppUsers.Where(x => x.Id==1).FirstOrDefault();
-            var response = await controller.GetUserAsync(user.Id);
+            var response = await controller.GetUserAsync();
             //fluent方法
             //拿到返回值
             var result = response.Should().BeOfType<JsonResult>().Subject;

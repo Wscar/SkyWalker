@@ -16,8 +16,9 @@ namespace IdentityServer.Service
             accountService = _accountService;
         }
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
-        {
-            var accountResult = await accountService.SignInAsync(context.UserName, context.Password);
+        {    
+            //待加入redis，对登陆请求进行控制，用户不能频繁的登陆。
+            var accountResult = await accountService.SignInAsync(context.UserName, context.Password);         
             if (accountResult.Status=="登陆成功")
             {
                 context.Result= new GrantValidationResult(accountResult.User.Id.ToString(), "admin", GetUserClaim(accountResult.User));
@@ -26,14 +27,18 @@ namespace IdentityServer.Service
             else
             {
                 //验证失败
-                context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, "密码错误");
+                context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, accountResult.Message);
             }
         }
         public Claim[] GetUserClaim(UserInfo userInfo)
         {
-            
-            var claims = new Claim[] { new Claim("USERID", userInfo.UserId), new Claim("USERNAME", userInfo.UserName) };
-            return claims;
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim("userId", userInfo.UserId));
+            claims.Add(new Claim("userName", userInfo.UserName));
+            claims.Add(new Claim("avatar", userInfo.Avatar??"无"));
+            claims.Add(new Claim("sex", userInfo.Sex.ToString()??"0"));
+            claims.Add(new Claim("id", userInfo.Id.ToString()));
+            return claims.ToArray();           
         }
         //var claims=  new Claim[] { new Claim("USERID",userInfo.UserId),new Claim("USERNAME",userInfo.UserName),
         //                      new Claim("USERPASSWORD",userInfo.UserPassWord),new Claim("AVATAR",userInfo.Avatar??"无"),

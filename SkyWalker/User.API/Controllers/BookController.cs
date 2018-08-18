@@ -13,7 +13,7 @@ namespace User.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class BookController : BaseController
     {
         private readonly IRepository<Book> bookRepository;
         public BookController(IRepository<Book> _bookRepository)
@@ -21,7 +21,7 @@ namespace User.API.Controllers
             bookRepository = _bookRepository;
         }
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public  async Task<IActionResult> Get(int id)
         {
             BookDto bookDto = new BookDto();

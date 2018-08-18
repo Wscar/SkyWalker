@@ -17,7 +17,7 @@ namespace UserTest
         public AccountController GetController(MySqlConnection conn)
         {
             IAccountService accountService = new AccountService(conn);
-            var controller = new AccountController(accountService);
+            var controller = new AccountController(accountService, null);
             return controller;
         }
         [Fact]
